@@ -16,7 +16,7 @@
             <td><?= $no++ ?></td>
             <td><?= $s['nomor_sertifikat'] ?></td>
             <td>
-                <a href="/sertifikat/<?= $s['id'] ?>">Lihat</a>
+                <a href="/v2/sertifikat/<?= $s['nomor_sertifikat'] ?>">Lihat</a>
                 <a href="/admin/delete/<?= $s['id'] ?>">Hapus</a>
             </td>
         </tr>
