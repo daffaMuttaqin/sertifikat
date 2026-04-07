@@ -12,7 +12,7 @@
 
     <div class="min-h-screen flex items-center justify-center px-4">
 
-        <div class="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
+        <div class="w-full max-w-md bg-white/90 backdrop-blur rounded-2xl shadow-lg p-8">
 
             <!-- Title -->
             <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
