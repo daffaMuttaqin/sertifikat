@@ -46,6 +46,11 @@ $RECYCLE.BIN/
 Vagrantfile
 
 #-------------------------
+# Node Modules
+#-------------------------
+node_modules/
+
+#-------------------------
 # Temporary Files
 #-------------------------
 /writable/cache/*
