@@ -25,12 +25,25 @@ class Admin extends BaseController
         $validation = \Config\Services::validation();
 
         $validation->setRules([
-            'nomor' => 'required',
-            'pdf' => 'uploaded[pdf]|ext_in[pdf,pdf]|max_size[pdf,10240]'
+            'nomor' => [
+                'rules' => 'required|is_unique[sertifikat.nomor_sertifikat]',
+                'errors' => [
+                    'required' => 'Nomor sertifikat wajib diisi',
+                    'is_unique' => 'Nomor sertifikat sudah digunakan!'
+                ]
+            ],
+            'pdf' => [
+                'rules' => 'uploaded[pdf]|ext_in[pdf,pdf]|max_size[pdf,10240]',
+                'errors' => [
+                    'uploaded' => 'File PDF wajib diupload',
+                    'ext_in' => 'File harus berupa PDF',
+                    'max_size' => 'Ukuran file maksimal 10MB'
+                ]
+            ]
         ]);
 
         if (!$validation->withRequest($this->request)->run()) {
-            return redirect()->back()->with('error', 'Upload gagal! Pastikan file PDF & max 10MB');
+            return redirect()->back()->with('error', 'Upload gagal! Pastikan file PDF, Max 10MB dan Nomor Sertifikat tidak sama dengan yang sudah ada.')->withInput();
         }
 
         // 🔹 AMBIL DATA
