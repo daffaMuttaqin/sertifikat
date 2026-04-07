@@ -16,6 +16,14 @@ class Sertifikat extends BaseController
             throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
         }
 
-        return view('sertifikat_view', ['data' => $data]);
+        $filePath = FCPATH . 'uploads/' . $data['file_pdf'];
+
+        if (!file_exists($filePath)) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        // Kirim file PDF langsung (tanpa ubah URL)
+        return $this->response->setContentType('application/pdf')
+            ->setBody(file_get_contents($filePath));
     }
 }
